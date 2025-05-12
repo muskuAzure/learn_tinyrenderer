@@ -1,0 +1,1 @@
+im following tutorial from https://github.com/ssloy/tinyrenderer 
