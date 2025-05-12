@@ -1,3 +1,6 @@
+This project is based on [original-author/original-repo](https://github.com/ssloy/tinyrenderer)
+
+
 # Tiny Renderer or how OpenGL works: software rendering in 500 lines of code
 
 # Check [the wiki](https://github.com/ssloy/tinyrenderer/wiki) for the detailed lessons.
