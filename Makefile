@@ -1,23 +1,29 @@
 SYSCONF_LINK = g++
-CPPFLAGS     =
+CPPFLAGS     = -Iinclude
 LDFLAGS      =
 LIBS         = -lm
 
-DESTDIR = ./
-TARGET  = main
+TARGETDIR = out
+TARGET    = $(TARGETDIR)/main
 
-OBJECTS := $(patsubst %.cpp,%.o,$(wildcard *.cpp))
+SRC      = src/main.cpp src/tgaimage.cpp
+OBJECTS  = src/main.o src/tgaimage.o
 
-all: $(DESTDIR)$(TARGET)
+all: run_and_convert
 
-$(DESTDIR)$(TARGET): $(OBJECTS)
-	$(SYSCONF_LINK) -Wall $(LDFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(LIBS)
+$(TARGETDIR):
+	mkdir -p $(TARGETDIR)
 
-$(OBJECTS): %.o: %.cpp
-	$(SYSCONF_LINK) -Wall $(CPPFLAGS) -c $(CFLAGS) $< -o $@
+$(TARGET): $(TARGETDIR) $(OBJECTS)
+	$(SYSCONF_LINK) -Wall $(LDFLAGS) -o $(TARGET) $(OBJECTS) $(LIBS)
+
+src/%.o: src/%.cpp
+	$(SYSCONF_LINK) -Wall $(CPPFLAGS) -c $< -o $@
+
+run_and_convert: $(TARGET)
+	./$(TARGET)
+	magick convert output.tga output.png
+	@echo "Done! output.png is ready."
 
 clean:
-	-rm -f $(OBJECTS)
-	-rm -f $(TARGET)
-	-rm -f *.tga
-
+	rm -f $(OBJECTS) $(TARGET) output.tga output.png
