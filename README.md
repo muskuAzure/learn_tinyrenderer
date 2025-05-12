@@ -64,3 +64,6 @@ output.tga should look something like this:
 ![](https://raw.githubusercontent.com/ssloy/tinyrenderer/gh-pages/img/00-home/boggie.png)
 
 ![](https://raw.githubusercontent.com/ssloy/tinyrenderer/gh-pages/img/00-home/diablo-ssao.png)
+
+
+change origin 
